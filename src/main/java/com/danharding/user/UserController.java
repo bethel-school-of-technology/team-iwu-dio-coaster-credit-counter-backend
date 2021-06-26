@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -17,8 +19,9 @@ import java.util.List;
 
 
 @RestController
-public class UserController {
-	private static final String SIGN_UP_URL = null;
+@EnableWebSecurity
+public class UserController extends WebSecurityConfigurerAdapter{
+	private static final String SIGN_UP_URL = "/users/register";
 	@Autowired
 	UserRepository userRepository;
 	
