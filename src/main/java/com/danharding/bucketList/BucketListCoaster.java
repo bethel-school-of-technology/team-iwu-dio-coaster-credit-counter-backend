@@ -8,12 +8,12 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "bucketList")
-public class Coaster {
+public class BucketListCoaster {
     public @Id @GeneratedValue long id;
     public @NotBlank String coaster;
     public @NotBlank String park;
 
-    public Coaster (@NotBlank String coaster, @NotBlank String park) {
+    public BucketListCoaster (@NotBlank String coaster, @NotBlank String park) {
         this.coaster = coaster;
         this.park = park;
     }

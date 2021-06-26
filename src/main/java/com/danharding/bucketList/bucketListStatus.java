@@ -1,7 +1,7 @@
 package com.danharding.bucketList;
 
-public enum bucketListStatus {
+public enum BucketListStatus {
     SUCCESS,
-	USER_ALREADY_EXISTS,
+    COASTER_ALREADY_EXISTS,
 	FAILURE
 }
