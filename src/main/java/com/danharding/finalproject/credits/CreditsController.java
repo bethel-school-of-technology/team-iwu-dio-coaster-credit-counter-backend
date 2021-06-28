@@ -1,5 +1,8 @@
 package com.danharding.finalproject.credits;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableWebSecurity
-public class CreditsController extends WebSecurityConfigurerAdapter{
+public class CreditsController extends WebSecurityConfigurerAdapter {
     private static final String CREATE_CREDIT_URL = "/coasters/credits";
     @Autowired
     CreditsRepository creditsRepository;
@@ -34,6 +37,26 @@ public class CreditsController extends WebSecurityConfigurerAdapter{
 
             creditsRepository.save(newCreditsCoaster);
         }
+    }
+
+    public void connectDB(Connection con) {
+        final String DB_URL = "jdbc:mysql//localhost:3306/?user=root";
+
+        final String USER = "root";
+        final String PASS = "finalproject";
+
+        try {
+            Class.forName("com.mysql.danharding.jdbc.driver");
+
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
