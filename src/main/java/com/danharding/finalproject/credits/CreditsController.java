@@ -1,8 +1,7 @@
 package com.danharding.finalproject.credits;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
