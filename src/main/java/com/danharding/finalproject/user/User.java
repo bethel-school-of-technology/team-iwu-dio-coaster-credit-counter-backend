@@ -1,4 +1,4 @@
-package com.danharding.user;
+package com.danharding.finalproject.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +12,8 @@ import java.util.Objects;
 @Table(name = "users")
 public class User {
 	private @Id @GeneratedValue long id;
+	private @NotBlank String firstName;
+	private @NotBlank String lastName;
 	private @NotBlank String username;
 	private @NotBlank String password;
 	private @NotBlank boolean loggedIn;
@@ -20,7 +22,9 @@ public class User {
 		
 	}
 	
-	public User (@NotBlank String username, @NotBlank String password) {
+	public User (@NotBlank String username, @NotBlank String password, @NotBlank String firstName, @NotBlank String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
 		this.loggedIn = false;
