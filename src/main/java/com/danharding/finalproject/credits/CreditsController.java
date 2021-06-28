@@ -39,25 +39,7 @@ public class CreditsController extends WebSecurityConfigurerAdapter {
         }
     }
 
-    public void connectDB(Connection con) {
-        final String DB_URL = "jdbc:mysql//localhost:3306/?user=root";
 
-        final String USER = "root";
-        final String PASS = "finalproject";
-
-        try {
-            Class.forName("com.mysql.danharding.jdbc.driver");
-
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
