@@ -1,4 +1,4 @@
-package com.danharding.credits;
+package com.danharding.finalproject.credits;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.danharding.credits;
+package com.danharding.finalproject.credits;
 
 import java.util.List;
 

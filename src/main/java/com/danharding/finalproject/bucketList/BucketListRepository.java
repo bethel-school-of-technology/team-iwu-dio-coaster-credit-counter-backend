@@ -1,4 +1,4 @@
-package com.danharding.bucketList;
+package com.danharding.finalproject.bucketList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

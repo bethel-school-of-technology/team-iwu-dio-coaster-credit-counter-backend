@@ -1,4 +1,4 @@
-package com.danharding.user;
+package com.danharding.finalproject.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
