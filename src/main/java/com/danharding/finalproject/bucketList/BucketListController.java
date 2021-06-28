@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableWebSecurity
 public class BucketListController{
-    private static final String CREATE_BUCKETLIST_URL = "/coasters/bucketlist";
+    
     @Autowired
     BucketListRepository bucketListRepository;
 

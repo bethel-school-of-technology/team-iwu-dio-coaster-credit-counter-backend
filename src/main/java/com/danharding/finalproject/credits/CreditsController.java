@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableWebSecurity
 public class CreditsController{
-    private static final String CREATE_CREDIT_URL = "/coasters/credits";
+    
     @Autowired
     CreditsRepository creditsRepository;
 

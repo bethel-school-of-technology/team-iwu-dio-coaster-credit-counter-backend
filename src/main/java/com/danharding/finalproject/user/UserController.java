@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @EnableWebSecurity
 public class UserController{
-	private static final String SIGN_UP_URL = "/users/register";
+	
 	@Autowired
 	UserRepository userRepository;
 	
