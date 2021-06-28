@@ -1,5 +1,7 @@
 package com.danharding.credits;
 
-public interface CreditsRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CreditsRepository extends JpaRepository<CreditsCoaster, Long> {
+
 }
