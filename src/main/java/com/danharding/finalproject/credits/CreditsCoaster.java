@@ -22,23 +22,19 @@ public class CreditsCoaster {
         return id;
     }
 
-    public long setId() {
-        return id;
-    }
-
     public String getCoaster() {
         return coaster;
     }
 
-    public String setCoaster () {
-        return coaster;
+    public void setCoaster (String coaster) {
+        this.coaster = coaster;
     }
 
     public String getPark() {
         return park;
     }
 
-    public String setPark() {
-        return park;
+    public void setPark(String park) {
+        this.park = park;
     }
 }
