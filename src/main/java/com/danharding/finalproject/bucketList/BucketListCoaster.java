@@ -13,6 +13,10 @@ public class BucketListCoaster {
     public @NotBlank String coaster;
     public @NotBlank String park;
 
+    public BucketListCoaster () {
+        
+    }
+
     public BucketListCoaster (@NotBlank String coaster, @NotBlank String park) {
         this.coaster = coaster;
         this.park = park;
@@ -26,15 +30,7 @@ public class BucketListCoaster {
         return coaster;
     }
 
-    public void setCoaster(String coaster) {
-        this.coaster = coaster;
-    }
-
     public String getPark() {
         return park;
-    }
-
-    public void setPark(String park) {
-        this.park = park;
     }
 }

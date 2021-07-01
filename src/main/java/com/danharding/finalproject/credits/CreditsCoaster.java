@@ -13,6 +13,10 @@ public class CreditsCoaster {
     public @NotBlank String coaster;
     public @NotBlank String park;
 
+    public CreditsCoaster() {
+        
+    }
+
     public CreditsCoaster (@NotBlank String coaster, @NotBlank String park) {
         this.coaster = coaster;
         this.park = park;
