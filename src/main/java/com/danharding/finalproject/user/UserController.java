@@ -13,6 +13,26 @@ public class UserController{
 	
 	@Autowired
 	UserRepository userRepository;
+
+	@GetMapping("/users")
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
+
+	// @PutMapping("/users/{id}")
+	// public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
+	// 	User user = userRepository.findById(userId);
+
+	// 	user.setFirstName(userDetails.getFirstName());
+	// 	user.setLastName(userDetails.getLastName());
+	// 	user.setUsername(userDetails.getUsername());
+	// 	user.setEmail(userDetails.getEmail());
+	// 	user.setPassword(userDetails.getPassword());
+
+	// 	User updatedUser = userRepository.save(user);
+
+	// 	return updatedUser;
+	// }
 	
 	@PostMapping("/users/register")
 	public Status registerUser(@Valid @RequestBody User newUser) {

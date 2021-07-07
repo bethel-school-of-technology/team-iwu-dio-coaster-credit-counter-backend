@@ -95,7 +95,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/users/register")
 				.permitAll().antMatchers(HttpMethod.POST, "/users/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/coasters/credits").permitAll()
-				.antMatchers(HttpMethod.POST, "/coasters/bucketlist").permitAll().anyRequest().authenticated().and()
+				.antMatchers(HttpMethod.POST, "/coasters/bucketlist").permitAll()
+				.antMatchers(HttpMethod.GET, "/coasters/credits").permitAll()
+				.antMatchers(HttpMethod.GET, "/users").permitAll()
+				.antMatchers(HttpMethod.GET, "/coasters/bucketlist").permitAll()
+				.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
