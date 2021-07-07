@@ -15,7 +15,6 @@ public class UserController{
 	UserRepository userRepository;
 	
 	@PostMapping("/users/register")
-	// @CrossOrigin(origins = "http://localhost:3000")
 	public Status registerUser(@Valid @RequestBody User newUser) {
 		List<User> users = userRepository.findAll();
 		
@@ -25,8 +24,7 @@ public class UserController{
 			System.out.println("Registered user: " +  newUser.toString());
 			
 			if (user.equals(newUser)) {
-				System.out.println("User already exists!");
-				return Status.USER_ALREADY_EXISTS;
+				return Status.FAILURE;
 			}
 		}
 		
