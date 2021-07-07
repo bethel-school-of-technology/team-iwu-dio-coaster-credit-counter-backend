@@ -1,13 +1,14 @@
 package com.danharding.finalproject.user;
-
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,13 +21,19 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	@Autowired
+	MySQLUserDetailsService mySQLUserDetailsService;
 	private static final String UNICODE_FORMAT = "UTF-8";
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		System.out.println("passwordEncoder function called");
 		return new BCryptPasswordEncoder();
+	}
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder((passwordEncoder()));
 	}
 
 	public static void encryptDecrypt() {
