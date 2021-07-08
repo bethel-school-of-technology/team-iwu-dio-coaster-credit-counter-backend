@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,20 +20,26 @@ public class UserController{
 		return userRepository.findAll();
 	}
 
-	// @PutMapping("/users/{id}")
-	// public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
-	// 	User user = userRepository.findById(userId);
+	@PutMapping("/users/{id}")
+	public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
+		Optional<User> userOptional = userRepository.findById(userId);
+		return userOptional
+				.map(u -> updateUserDetails(u, userDetails))
+				.map(u -> userRepository.save(u))
+				.orElse(null);
 
-	// 	user.setFirstName(userDetails.getFirstName());
-	// 	user.setLastName(userDetails.getLastName());
-	// 	user.setUsername(userDetails.getUsername());
-	// 	user.setEmail(userDetails.getEmail());
-	// 	user.setPassword(userDetails.getPassword());
+		
+	}
 
-	// 	User updatedUser = userRepository.save(user);
+	private User updateUserDetails(User user, User userDetails) {
+		user.setFirstName(userDetails.getFirstName());
+		user.setLastName(userDetails.getLastName());
+		user.setUsername(userDetails.getUsername());
+		user.setEmail(userDetails.getEmail());
+		user.setPassword(userDetails.getPassword());
 
-	// 	return updatedUser;
-	// }
+		return user;
+	} 
 	
 	@PostMapping("/users/register")
 	public Status registerUser(@Valid @RequestBody User newUser) {

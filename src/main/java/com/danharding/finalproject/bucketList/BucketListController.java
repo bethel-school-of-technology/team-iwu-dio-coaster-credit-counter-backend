@@ -1,6 +1,8 @@
 package com.danharding.finalproject.bucketList;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -8,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,14 +27,17 @@ public class BucketListController {
         return bucketListRepository.findAll();
     }
 
-    // @DeleteMapping("coasters/bucketlist/{id}")
-    // public ResponseEntity<?> deleteBucketListCoaster(@PathVariable(value = "id") Long coasterId){
-    //     Optional<BucketListCoaster> bucketListCoaster = bucketListRepository.findById(coasterId);
+    @DeleteMapping("coasters/bucketlist/{id}")
+    public ResponseEntity<?> deleteBucketListCoaster(@PathVariable(value = "id") Long coasterId){
+        Optional<BucketListCoaster> bucketListCoasterOptional = bucketListRepository.findById(coasterId);
+         bucketListCoasterOptional
+                .ifPresent(b -> bucketListRepository.delete(b));
+                
             
-    //         bucketListRepository.delete(bucketListCoaster);
+            // bucketListRepository.delete(bucketListCoaster);
 
-    //         return ResponseEntity.ok().build();
-    // }
+            return ResponseEntity.ok().build();
+    }
 
     @PostMapping("coasters/bucketlist")
     @CrossOrigin(origins = "http://localhost:3000")

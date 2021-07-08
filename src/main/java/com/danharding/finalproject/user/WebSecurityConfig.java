@@ -99,6 +99,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/coasters/credits").permitAll()
 				.antMatchers(HttpMethod.GET, "/users").permitAll()
 				.antMatchers(HttpMethod.GET, "/coasters/bucketlist").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/coasters/bucketlist/{id}").permitAll()
+				.antMatchers(HttpMethod.PUT, "/users/{id}").permitAll()
 				.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).sessionManagement()
