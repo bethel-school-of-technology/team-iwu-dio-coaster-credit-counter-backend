@@ -27,7 +27,7 @@ public class CreditsController{
     }
 
 
-    @PostMapping("coasters/credits")
+    @PostMapping("/coasters/credits")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> addCreditsCoaster(@RequestBody CreditsCoaster newCreditsCoaster) {
         List<CreditsCoaster> creditsCoasters = creditsRepository.findAll();

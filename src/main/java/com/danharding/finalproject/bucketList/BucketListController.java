@@ -22,12 +22,12 @@ public class BucketListController {
     @Autowired
     BucketListRepository bucketListRepository;
 
-    @GetMapping("coasters/bucketlist")
+    @GetMapping("/coasters/bucketlist")
     public List<BucketListCoaster> getAllBucketListCoasters() {
         return bucketListRepository.findAll();
     }
 
-    @DeleteMapping("coasters/bucketlist/{id}")
+    @DeleteMapping("/coasters/bucketlist/{id}")
     public ResponseEntity<?> deleteBucketListCoaster(@PathVariable(value = "id") Long coasterId){
         Optional<BucketListCoaster> bucketListCoasterOptional = bucketListRepository.findById(coasterId);
          bucketListCoasterOptional
@@ -39,7 +39,7 @@ public class BucketListController {
             return ResponseEntity.ok().build();
     }
 
-    @PostMapping("coasters/bucketlist")
+    @PostMapping("/coasters/bucketlist")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> addBucketListCoaster(@RequestBody BucketListCoaster newBucketListCoaster) {
         List<BucketListCoaster> bucketListCoasters = bucketListRepository.findAll();
