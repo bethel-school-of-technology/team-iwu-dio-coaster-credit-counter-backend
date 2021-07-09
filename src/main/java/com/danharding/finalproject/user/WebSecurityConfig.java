@@ -36,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder((passwordEncoder()));
 	}
 
-	public static void encryptDecrypt() {
+	public static void encryptData() {
 		
-		String text = "hello";
+		String text = "";
 
 		try {
 			SecretKey key = generateKey("AES");
@@ -47,8 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			byte[] encryptedData = encryptString(text, key, cipher);
 			String encryptedString = new String(encryptedData);
 			System.out.println(encryptedString);
-			String decrypted = decryptString(encryptedData, key, cipher);
-			System.out.println(decrypted);
 
 		} catch (Exception e) {
 
@@ -77,18 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 	}
 
-	public static String decryptString(byte[] dataToDecrypt, SecretKey myKey, Cipher cipher) {
-		try {
-			cipher.init(Cipher.DECRYPT_MODE, myKey);
-			byte[] textDecrypted = cipher.doFinal(dataToDecrypt);
-			String result = new String(textDecrypted);
 
-			return result;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
