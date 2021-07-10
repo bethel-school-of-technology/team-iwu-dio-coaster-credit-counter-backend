@@ -1,4 +1,6 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Repositories;
+
+import com.danharding.finalproject.Models.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

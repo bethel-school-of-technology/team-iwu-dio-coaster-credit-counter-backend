@@ -1,7 +1,10 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.danharding.finalproject.Models.User;
+import com.danharding.finalproject.Repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

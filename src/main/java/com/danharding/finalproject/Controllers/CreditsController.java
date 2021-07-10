@@ -1,8 +1,11 @@
-package com.danharding.finalproject.credits;
+package com.danharding.finalproject.Controllers;
 
 
 
 import java.util.List;
+
+import com.danharding.finalproject.Models.CreditsCoaster;
+import com.danharding.finalproject.Repositories.CreditsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

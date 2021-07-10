@@ -1,4 +1,4 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Authentication;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.auth0.jwt.JWT;
+import com.danharding.finalproject.Models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+import static com.danharding.finalproject.Authentication.AuthConstants.*;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import static com.danharding.finalproject.user.AuthConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -30,8 +32,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) {
       try {
 
-        com.danharding.finalproject.user.User creds = new ObjectMapper()
-        .readValue(req.getInputStream(), com.danharding.finalproject.user.User.class);
+        com.danharding.finalproject.Models.User creds = new ObjectMapper()
+        .readValue(req.getInputStream(), com.danharding.finalproject.Models.User.class);
   
         return authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(

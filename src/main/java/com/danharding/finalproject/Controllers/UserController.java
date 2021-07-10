@@ -1,9 +1,14 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+
+import com.danharding.finalproject.Constants.Status;
+import com.danharding.finalproject.Models.User;
+import com.danharding.finalproject.Repositories.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
 
