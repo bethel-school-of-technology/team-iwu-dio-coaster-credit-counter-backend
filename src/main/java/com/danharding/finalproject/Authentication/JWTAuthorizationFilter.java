@@ -1,5 +1,7 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Authentication;
 
+
+import static com.danharding.finalproject.Authentication.AuthConstants.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-
-import static com.danharding.finalproject.user.AuthConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
   public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {

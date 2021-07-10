@@ -1,4 +1,4 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

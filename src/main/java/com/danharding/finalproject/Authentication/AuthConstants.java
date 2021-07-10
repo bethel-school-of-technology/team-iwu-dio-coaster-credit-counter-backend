@@ -1,4 +1,4 @@
-package com.danharding.finalproject.user;
+package com.danharding.finalproject.Authentication;
 
 public class AuthConstants {
     public static final String SECRET = "SuperSecretKey";

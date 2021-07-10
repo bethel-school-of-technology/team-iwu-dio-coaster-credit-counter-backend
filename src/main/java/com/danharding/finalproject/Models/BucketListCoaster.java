@@ -1,4 +1,4 @@
-package com.danharding.finalproject.credits;
+package com.danharding.finalproject.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,17 +7,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "credits")
-public class CreditsCoaster {
+@Table(name = "bucketList")
+public class BucketListCoaster {
     public @Id @GeneratedValue long id;
     public @NotBlank String coaster;
     public @NotBlank String park;
 
-    public CreditsCoaster() {
+    public BucketListCoaster () {
         
     }
 
-    public CreditsCoaster (@NotBlank String coaster, @NotBlank String park) {
+    public BucketListCoaster (@NotBlank String coaster, @NotBlank String park) {
         this.coaster = coaster;
         this.park = park;
     }
@@ -30,15 +30,7 @@ public class CreditsCoaster {
         return coaster;
     }
 
-    public void setCoaster (String coaster) {
-        this.coaster = coaster;
-    }
-
     public String getPark() {
         return park;
-    }
-
-    public void setPark(String park) {
-        this.park = park;
     }
 }
