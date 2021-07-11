@@ -2,12 +2,14 @@ package com.danharding.finalproject.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import com.danharding.finalproject.Constants.Status;
 import com.danharding.finalproject.Models.User;
 import com.danharding.finalproject.Repositories.UserRepository;
+import com.danharding.finalproject.Services.MySQLUserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,12 @@ public class UserController{
 	
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	MySQLUserDetailsService mySQLUserDetailsService;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
@@ -60,16 +68,20 @@ public class UserController{
 			}
 		}
 		
-		userRepository.save(newUser);
+		mySQLUserDetailsService.Save(newUser);
 			return Status.SUCCESS;
 	}
 	
 	@PostMapping("/users/login")
 	public Status loginUser(@Valid @RequestBody User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		List<User> users = userRepository.findAll();
 		
 		for (User other : users) {
-			if (other.equals(user)) {
+			if (other.getUsername().equals
+			(user.getUsername()) && 
+			passwordEncoder.matches(user.getPassword(),
+			other.getPassword())) {
 				user.setLoggedIn(true);
 				userRepository.save(user);
 				return Status.SUCCESS;

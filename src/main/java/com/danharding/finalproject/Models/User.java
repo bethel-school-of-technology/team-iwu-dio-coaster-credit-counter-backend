@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -83,63 +80,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public static boolean valEmail(String email) {
-		String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-		Pattern emailPat = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = emailPat.matcher(email);
-		return matcher.find();
-	}
-
-	public static boolean valPassword(String password) {
-		if (password.length() > 7) {
-			if(checkPassword(password)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			System.out.println("Password too short");
-			return false;
-		}
-	}
-
-	public static boolean checkPassword(String password) {
-		boolean hasNum = false;
-		boolean hasCap = false;
-		boolean hasLow = false;
-		char c;
-		for (int i = 0; i < password.length(); i++) {
-			c = password.charAt(i);
-			if (Character.isDigit(c)) {
-				hasNum = true;
-			}
-			if (Character.isUpperCase(c)) {
-				hasCap = true;
-			} else if (Character.isLowerCase(c)) {
-				hasLow = true;
-			}
-			if (hasNum && hasCap && hasLow) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof User))
-			return false;
-		User user = (User) o;
-		return Objects.equals(username, user.username) && Objects.equals(password, user.password);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, username, password, loggedIn);
 	}
 
 	@Override
