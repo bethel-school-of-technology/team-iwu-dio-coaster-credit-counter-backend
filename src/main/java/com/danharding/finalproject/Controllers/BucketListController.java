@@ -37,7 +37,6 @@ public class BucketListController {
                 .ifPresent(b -> bucketListRepository.delete(b));
                 
             
-            // bucketListRepository.delete(bucketListCoaster);
 
             return ResponseEntity.ok().build();
     }

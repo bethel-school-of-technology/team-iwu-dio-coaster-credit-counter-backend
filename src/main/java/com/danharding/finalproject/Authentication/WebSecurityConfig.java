@@ -38,45 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
-	public static void encryptData() {
-		
-		String text = "";
- 
-		try {
-			SecretKey key = generateKey("AES");
-			Cipher cipher;
-			cipher = Cipher.getInstance("AES");
-			byte[] encryptedData = encryptString(text, key, cipher);
-			String encryptedString = new String(encryptedData);
-			System.out.println(encryptedString);
-
-		} catch (Exception e) {
-
-		}
-	}
-
-	public static SecretKey generateKey(String encryptionType) {
-		try {
-			KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
-			SecretKey myKey = keyGenerator.generateKey();
-			return myKey;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public static byte[] encryptString(String dataToEncrypt, SecretKey myKey, Cipher cipher) {
-		try {
-			byte[] text = dataToEncrypt.getBytes(UNICODE_FORMAT);
-			cipher.init(Cipher.ENCRYPT_MODE, myKey);
-			byte[] textEncrypted = cipher.doFinal(text);
-
-			return textEncrypted;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
 
 
 	@Override
