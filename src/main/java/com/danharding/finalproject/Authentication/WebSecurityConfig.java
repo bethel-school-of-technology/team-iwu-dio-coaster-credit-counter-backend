@@ -35,13 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder((passwordEncoder()));
+		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	public static void encryptData() {
 		
 		String text = "";
-
+ 
 		try {
 			SecretKey key = generateKey("AES");
 			Cipher cipher;
@@ -81,8 +81,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/users/register")
-				.permitAll().antMatchers(HttpMethod.POST, "/users/login").permitAll()
+		http.cors().and().csrf().disable().authorizeRequests()
+				.antMatchers(HttpMethod.POST, "/users/register").permitAll()
+				.antMatchers(HttpMethod.POST, "/users/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/coasters/credits").permitAll()
 				.antMatchers(HttpMethod.POST, "/coasters/bucketlist").permitAll()
 				.antMatchers(HttpMethod.GET, "/coasters/credits").permitAll()
