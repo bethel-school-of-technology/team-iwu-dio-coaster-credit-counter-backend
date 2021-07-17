@@ -1,4 +1,4 @@
-package com.danharding.finalproject.Authentication;
+package com.danharding.coastercreditcounter.Authentication;
 
 public class AuthConstants {
     public static final String SECRET = "SuperSecretKey";

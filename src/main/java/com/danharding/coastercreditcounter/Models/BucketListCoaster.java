@@ -1,4 +1,4 @@
-package com.danharding.finalproject.Models;
+package com.danharding.coastercreditcounter.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

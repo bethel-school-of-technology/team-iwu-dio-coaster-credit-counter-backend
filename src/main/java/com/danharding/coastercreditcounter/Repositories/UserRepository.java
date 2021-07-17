@@ -1,6 +1,6 @@
-package com.danharding.finalproject.Repositories;
+package com.danharding.coastercreditcounter.Repositories;
 
-import com.danharding.finalproject.Models.User;
+import com.danharding.coastercreditcounter.Models.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,10 +1,10 @@
-package com.danharding.finalproject.Controllers;
+package com.danharding.coastercreditcounter.Controllers;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.danharding.finalproject.Models.BucketListCoaster;
-import com.danharding.finalproject.Repositories.BucketListRepository;
+import com.danharding.coastercreditcounter.Models.BucketListCoaster;
+import com.danharding.coastercreditcounter.Repositories.BucketListRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

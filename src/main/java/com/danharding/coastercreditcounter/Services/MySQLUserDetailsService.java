@@ -1,10 +1,10 @@
-package com.danharding.finalproject.Services;
+package com.danharding.coastercreditcounter.Services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.danharding.finalproject.Models.User;
-import com.danharding.finalproject.Repositories.UserRepository;
+import com.danharding.coastercreditcounter.Models.User;
+import com.danharding.coastercreditcounter.Repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,15 +30,16 @@ public class MySQLUserDetailsService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities());
     }
-    public UserDetails Save(User newUser) {
+    public void Save(User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         User savedUser = userRepository.save(newUser);
         System.out.println(passwordEncoder.getClass());
-        return new org.springframework.security.core.userdetails.User(savedUser.getUsername(), savedUser.getPassword(), getAuthorities());
+        new org.springframework.security.core.userdetails.User(savedUser.getUsername(), savedUser.getPassword(), getAuthorities());
     }
 
     private List<SimpleGrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authList = new ArrayList<>();
+        authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         authList.add(new SimpleGrantedAuthority("ROLE_USER"));
         return authList;
     }

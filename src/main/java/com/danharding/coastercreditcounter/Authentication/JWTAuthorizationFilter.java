@@ -1,7 +1,7 @@
-package com.danharding.finalproject.Authentication;
+package com.danharding.coastercreditcounter.Authentication;
 
 
-import static com.danharding.finalproject.Authentication.AuthConstants.*;
+import static com.danharding.coastercreditcounter.Authentication.AuthConstants.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
