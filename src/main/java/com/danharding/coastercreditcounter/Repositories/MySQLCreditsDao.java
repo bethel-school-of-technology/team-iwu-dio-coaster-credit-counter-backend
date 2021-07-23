@@ -5,6 +5,7 @@ import com.danharding.coastercreditcounter.Services.DataAccess.CreditsDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service //TODO: don't forget this cheese either... lolz
 public class MySQLCreditsDao implements CreditsDao {
@@ -23,6 +24,16 @@ public class MySQLCreditsDao implements CreditsDao {
     @Override
     public CreditsCoaster save(CreditsCoaster creditsCoaster) {
         return creditsRepository.save(creditsCoaster);
+    }
+
+    @Override
+    public Optional<CreditsCoaster> findById(Long coasterId) {
+        return creditsRepository.findById(coasterId);
+    }
+
+    @Override
+    public void delete(CreditsCoaster creditsCoaster) {
+
     }
 
 }

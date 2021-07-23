@@ -2,12 +2,13 @@ package com.danharding.coastercreditcounter.Repositories;
 
 import com.danharding.coastercreditcounter.Models.BucketListCoaster;
 import com.danharding.coastercreditcounter.Services.DataAccess.BucketListDao;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service //TODO: please.... stop adding this cheese....lolz
+@Component //TODO: please.... stop adding this cheese....lolz
 public class MySQLBucketListDao implements BucketListDao {
 
     private final BucketListRepository bucketListRepository;

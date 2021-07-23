@@ -3,7 +3,9 @@ package com.danharding.coastercreditcounter.Controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import com.danharding.coastercreditcounter.Models.BucketListCoaster;
 import com.danharding.coastercreditcounter.Models.CreditsCoaster;
 
 import com.danharding.coastercreditcounter.Services.DataAccess.CreditsDao;
@@ -11,11 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableWebSecurity
@@ -27,6 +25,17 @@ public class CreditsController{
     @GetMapping("/coasters/credits")
     public List<CreditsCoaster> getAllCoasters(){
         return creditsDao.findAll();
+    }
+
+    @DeleteMapping("/coasters/credits/{id}")
+    public ResponseEntity<?> deleteCreditsCoaster(@PathVariable(value = "id") Long coasterId){
+        Optional<CreditsCoaster> creditsCoasterOptional = creditsDao.findById(coasterId);
+        creditsCoasterOptional
+                .ifPresent(b -> creditsDao.delete(b));
+
+
+
+        return ResponseEntity.ok().build();
     }
 
 
