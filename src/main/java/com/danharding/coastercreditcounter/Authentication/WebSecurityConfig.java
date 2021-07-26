@@ -16,6 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -29,6 +33,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+
+	//TODO: this doesn't belong in this file
+	@Bean
+	public CommonsRequestLoggingFilter requestLoggingFilter() {
+		CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+		loggingFilter.setIncludeClientInfo(true);
+		loggingFilter.setIncludeQueryString(true);
+		loggingFilter.setIncludePayload(true);
+		loggingFilter.setMaxPayloadLength(64000);
+		return loggingFilter;
+	}
+
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(mySQLUserDetailsService).passwordEncoder(passwordEncoder());
@@ -41,13 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/users/register").permitAll()
 				.antMatchers(HttpMethod.POST, "/users/login").permitAll()
-				.antMatchers(HttpMethod.POST, "/coasters/credits").permitAll()
-				.antMatchers(HttpMethod.POST, "/coasters/bucketlist").permitAll()
-				.antMatchers(HttpMethod.GET, "/coasters/credits").permitAll()
+				.antMatchers(HttpMethod.POST, "/credits").permitAll()
+				.antMatchers(HttpMethod.POST, "/bucketlist").permitAll()
+				.antMatchers(HttpMethod.GET, "/credits").permitAll()
 				.antMatchers(HttpMethod.GET, "/users").permitAll()
-				.antMatchers(HttpMethod.GET, "/coasters/bucketlist").permitAll()
-				.antMatchers(HttpMethod.DELETE, "/coasters/bucketlist/{id}").permitAll()
-				.antMatchers(HttpMethod.DELETE, "/coasters/credits/{id}").permitAll()
+				.antMatchers(HttpMethod.GET, "/bucketlist").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/bucketlist/{id}").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/credits/{id}").permitAll()
 				.antMatchers(HttpMethod.PUT, "/users/{id}").permitAll()
 				.anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
@@ -61,7 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration corsConfig = new CorsConfiguration();
 		corsConfig.applyPermitDefaultValues();
-		corsConfig.setExposedHeaders(Arrays.asList("Authorization"));
+		corsConfig.addAllowedMethod(HttpMethod.DELETE);
+		corsConfig.setExposedHeaders(Arrays.asList("Authorization", "Access-Control-Allow-Origin"));
 		source.registerCorsConfiguration("/**", corsConfig);
 		return source;
 	}

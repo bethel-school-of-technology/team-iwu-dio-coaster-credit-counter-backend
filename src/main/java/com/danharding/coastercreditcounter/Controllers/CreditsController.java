@@ -22,12 +22,13 @@ public class CreditsController{
     @Autowired
     private CreditsDao creditsDao;
 
-    @GetMapping("/coasters/credits")
+    @GetMapping("/credits")
     public List<CreditsCoaster> getAllCoasters(){
         return creditsDao.findAll();
     }
 
-    @DeleteMapping("/coasters/credits/{id}")
+    @DeleteMapping("/credits/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> deleteCreditsCoaster(@PathVariable(value = "id") Long coasterId){
         Optional<CreditsCoaster> creditsCoasterOptional = creditsDao.findById(coasterId);
         creditsCoasterOptional
@@ -39,7 +40,7 @@ public class CreditsController{
     }
 
 
-    @PostMapping("/coasters/credits")
+    @PostMapping("/credits")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> addCreditsCoaster(@RequestBody CreditsCoaster newCreditsCoaster) {
         List<CreditsCoaster> creditsCoasters = creditsDao.findAll();

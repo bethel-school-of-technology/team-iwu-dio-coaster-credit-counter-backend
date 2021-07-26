@@ -33,7 +33,7 @@ public class MySQLCreditsDao implements CreditsDao {
 
     @Override
     public void delete(CreditsCoaster creditsCoaster) {
-
+            creditsRepository.delete(creditsCoaster);
     }
 
 }
